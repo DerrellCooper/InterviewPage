@@ -10,39 +10,52 @@ export default function SideNav(props){
     
         
 
-        // function handleClick(){
-        //     view[1]("View Recipe");
-        //     // recipeID[1](`${id}`);
-        // }
-        const list = allDrinks.map(
-            (currentItem) =>{
-                
-                return(
+        function ShowRecipes(){
+            
+            const listItems = allDrinks.map(
+                (currentItem) =>{
+                    
+                    return(
                         <>
-                            <button className="btn" type="button" onClick={()=>{view[1]("View Recipe"); recipeID[1](currentItem.id)}}>
-                                <h5>{currentItem.title}</h5>
-                            </button>
+                            <li>
+                                <button className="btn" type="button" onClick={()=>{view[1]("View Recipe"); recipeID[1](currentItem.id)}}>
+                                    <h5>{currentItem.title}</h5>
+                                </button>
+                            </li>
                         </>
                     
-                )
-            }
+                    )
+                }
             
-        )
+            )
+
+            return(
+                <ul>
+                    <li>
+                        <button className="btn" type="button" onClick={()=> view[1]("View All")}>
+                            <h5>Full List</h5>
+                        </button>
+                    </li>
+                    {listItems}
+                </ul>
+            )
+        }
     
     
     
     return(
         
-    <div className="accordion" id="navAccordion">
-                <button className="btn" type="button" onClick={()=> setShowList(true)}>
+    
+            <div>
+
+                <button className="btn" type="button" onClick={()=> setShowList(!showList)}>
                     <h2>Recipes</h2>
                 </button>
-                <button className="btn" type="button" onClick={()=> view[1]("View All")}>
-                    <h5>Full List</h5>
-                </button>
-                    {list}
+                {showList ? <ShowRecipes/>: null}
+            </div>
+                    
                         
-    </div>
+    
         
     )
 }
